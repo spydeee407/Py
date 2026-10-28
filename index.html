@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<main>
+  <header>
+    <h1></h1>
+    <p>Core Practical III — 23DCCP3 · All 10 programs from the lab manual</p>
+  </header>
+
+    <section class="program">
+      <h2>EXERCISE 1: CLASS &amp; OBJECT</h2>
+      <pre><code>class Student:
+  def __init__(self, name, roll_no):
+    self.name = name
+    self.roll_no = roll_no
+  def display(self):
+    print(&quot;\nStudent Details&quot;)
+    print(&quot;Student Name :&quot;, self.name)
+    print(&quot;Roll Number :&quot;, self.roll_no)
+name = input(&quot;Enter student name: &quot;)
+roll_no = int(input(&quot;Enter roll number: &quot;))
+s1 = Student(name, roll_no)
+s1.display()</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 2: INHERITANCE</h2>
+      <pre><code># Python program to implement inheritance
+# using employee salary calculation
+
+# Parent class
+class Employee:
+
+  def __init__(self, name, basic_salary):
+    self.name = name
+    self.basic_salary = basic_salary
+
+  def display_employee(self):
+    print(&quot;\nEmployee Name :&quot;, self.name)
+    print(&quot;Basic Salary :&quot;, self.basic_salary)
+
+# Child class
+class Salary(Employee):
+
+  def __init__(self, name, basic_salary, bonus):
+    # Calling parent class constructor
+    Employee.__init__(self, name, basic_salary)
+    self.bonus = bonus
+
+  def calculate_salary(self):
+    total_salary = self.basic_salary + self.bonus
+
+    self.display_employee()
+    print(&quot;Bonus      :&quot;, self.bonus)
+    print(&quot;Total Salary :&quot;, total_salary)
+
+# Reading input from keyboard
+name = input(&quot;Enter employee name: &quot;)
+basic_salary = float(input(&quot;Enter basic salary: &quot;))
+bonus = float(input(&quot;Enter bonus amount: &quot;))
+
+# Creating object of child class
+s = Salary(name, basic_salary, bonus)
+
+# Calling method
+s.calculate_salary()</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 3: LIST &amp; TUPLE</h2>
+      <pre><code># Reading student marks
+n = int(input(&quot;Enter number of students: &quot;))
+
+marks_list = []
+
+print(&quot;Enter student marks:&quot;)
+for i in range(n):
+  mark = int(input())
+  marks_list.append(mark)
+
+# Displaying list
+print(&quot;\nList of Marks:&quot;)
+print(marks_list)
+
+# Finding highest and lowest mark
+highest = max(marks_list)
+lowest = min(marks_list)
+
+print(&quot;\nHighest Mark :&quot;, highest)
+print(&quot;Lowest Mark :&quot;, lowest)
+
+# Sorting the list
+marks_list.sort()
+
+print(&quot;\nSorted List:&quot;)
+print(marks_list)
+
+# Converting list into tuple
+marks_tuple = tuple(marks_list)
+
+# Displaying tuple
+print(&quot;\nTuple of Marks:&quot;)
+print(marks_tuple)
+
+# Counting elements in tuple
+print(&quot;\nNumber of Elements in Tuple :&quot;, len(marks_tuple))</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 4: DICTIONARY</h2>
+      <pre><code># Creating empty dictionary
+employees = {}
+
+# Reading employee details
+n = int(input(&quot;Enter number of employees: &quot;))
+
+for i in range(n):
+  emp_id = input(&quot;\nEnter Employee ID: &quot;)
+  emp_name = input(&quot;Enter Employee Name: &quot;)
+  salary = float(input(&quot;Enter Employee Salary: &quot;))
+
+  # Storing details in dictionary
+  employees[emp_id] = {
+    &quot;Name&quot;: emp_name,
+    &quot;Salary&quot;: salary
+  }
+
+# Displaying employee records
+print(&quot;\nEmployee Records&quot;)
+for emp_id, details in employees.items():
+  print(&quot;\nEmployee ID :&quot;, emp_id)
+  print(&quot;Employee Name :&quot;, details[&quot;Name&quot;])
+  print(&quot;Salary :&quot;, details[&quot;Salary&quot;])
+
+# Calculating total salary expenditure
+total_salary = 0
+
+for details in employees.values():
+  total_salary += details[&quot;Salary&quot;]
+
+print(&quot;\nTotal Salary Expenditure :&quot;, total_salary)
+
+# Searching employee by ID
+search_id = input(&quot;\nEnter Employee ID to search: &quot;)
+
+if search_id in employees:
+   print(&quot;\nEmployee Found&quot;)
+   print(&quot;Name :&quot;, employees[search_id][&quot;Name&quot;])
+   print(&quot;Salary :&quot;, employees[search_id][&quot;Salary&quot;])
+else:
+   print(&quot;Employee ID not found&quot;)</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 5: BINARY SEARCH</h2>
+      <pre><code># Reading number of elements
+n = int(input(&quot;Enter number of elements: &quot;))
+
+# Creating empty list
+data = []
+
+# Reading elements
+print(&quot;Enter elements:&quot;)
+for i in range(n):
+  element = int(input())
+  data.append(element)
+
+# Sorting the list for Binary Search
+data.sort()
+
+print(&quot;\nSorted List:&quot;)
+print(data)
+
+# Reading element to search
+search = int(input(&quot;\nEnter element to search: &quot;))
+
+# Initializing variables
+low = 0
+high = n - 1
+found = False
+
+# Binary Search process
+while low &lt;= high:
+
+  mid = (low + high) // 2
+
+  if data[mid] == search:
+     print(&quot;\nElement found at position&quot;, mid + 1)
+     found = True
+     break
+
+  elif data[mid] &lt; search:
+    low = mid + 1
+
+  else:
+    high = mid - 1
+
+# If element not found
+if found == False:
+   print(&quot;\nElement not found&quot;)</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 6: SORTING (BUBBLE SORT)</h2>
+      <pre><code># Reading number of elements
+n = int(input(&quot;Enter number of elements: &quot;))
+
+# Creating empty list
+data = []
+
+# Reading elements
+print(&quot;Enter elements:&quot;)
+for i in range(n):
+  element = int(input())
+  data.append(element)
+
+# Displaying original list
+print(&quot;\nOriginal List:&quot;)
+print(data)
+
+# Bubble Sort process
+for i in range(n):
+  for j in range(0, n - i - 1):
+
+    if data[j] &gt; data[j + 1]:
+       # Swapping elements
+       temp = data[j]
+       data[j] = data[j + 1]
+       data[j + 1] = temp
+
+# Displaying sorted list
+print(&quot;\nSorted List:&quot;)
+print(data)</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 7: STACK</h2>
+      <pre><code># Creating empty stack
+stack = []
+
+while True:
+
+  print(&quot;\nSTACK OPERATIONS&quot;)
+  print(&quot;1. Push&quot;)
+  print(&quot;2. Pop&quot;)
+  print(&quot;3. Display&quot;)
+  print(&quot;4. Exit&quot;)
+
+  choice = int(input(&quot;Enter your choice: &quot;))
+
+  # Push operation
+  if choice == 1:
+     element = input(&quot;Enter element to push: &quot;)
+     stack.append(element)
+     print(element, &quot;inserted into stack&quot;)
+
+  # Pop operation
+  elif choice == 2:
+    if len(stack) == 0:
+       print(&quot;Stack is empty&quot;)
+    else:
+       removed = stack.pop()
+       print(removed, &quot;removed from stack&quot;)
+
+  # Display operation
+  elif choice == 3:
+    if len(stack) == 0:
+       print(&quot;Stack is empty&quot;)
+    else:
+       print(&quot;\nStack Elements:&quot;)
+       for item in reversed(stack):
+         print(item)
+
+  # Exit operation
+  elif choice == 4:
+    print(&quot;Program terminated&quot;)
+    break
+
+  else:
+    print(&quot;Invalid choice&quot;)</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 8: QUEUE</h2>
+      <pre><code># Creating empty queue
+queue = []
+
+while True:
+
+  print(&quot;\nQUEUE OPERATIONS&quot;)
+  print(&quot;1. Enqueue&quot;)
+  print(&quot;2. Dequeue&quot;)
+  print(&quot;3. Display&quot;)
+  print(&quot;4. Exit&quot;)
+
+  choice = int(input(&quot;Enter your choice: &quot;))
+
+  # Enqueue operation
+  if choice == 1:
+     element = input(&quot;Enter element to insert: &quot;)
+     queue.append(element)
+     print(element, &quot;inserted into queue&quot;)
+
+  # Dequeue operation
+  elif choice == 2:
+    if len(queue) == 0:
+       print(&quot;Queue is empty&quot;)
+    else:
+       removed = queue.pop(0)
+       print(removed, &quot;removed from queue&quot;)
+
+  # Display operation
+  elif choice == 3:
+    if len(queue) == 0:
+       print(&quot;Queue is empty&quot;)
+    else:
+       print(&quot;\nQueue Elements:&quot;)
+       for item in queue:
+         print(item)
+
+  # Exit operation
+  elif choice == 4:
+    print(&quot;Program terminated&quot;)
+    break
+
+  else:
+    print(&quot;Invalid choice&quot;)</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 9: BREADTH FIRST SEARCH (BFS)</h2>
+      <pre><code># Graph represented using dictionary
+graph = {
+  &#x27;A&#x27;: [&#x27;B&#x27;, &#x27;C&#x27;],
+  &#x27;B&#x27;: [&#x27;D&#x27;, &#x27;E&#x27;],
+  &#x27;C&#x27;: [&#x27;F&#x27;],
+  &#x27;D&#x27;: [],
+  &#x27;E&#x27;: [&#x27;F&#x27;],
+  &#x27;F&#x27;: []
+}
+
+# BFS function
+def bfs(graph, start):
+
+  visited = []
+  queue = []
+
+  # Add starting node
+  visited.append(start)
+  queue.append(start)
+
+  print(&quot;\nBFS Traversal:&quot;)
+
+  while queue:
+   node = queue.pop(0)
+   print(node, end=&quot; &quot;)
+
+   # Visit adjacent nodes
+   for neighbour in graph[node]:
+      if neighbour not in visited:
+         visited.append(neighbour)
+         queue.append(neighbour)
+
+# Reading starting node
+start_node = input(&quot;Enter starting node: &quot;)
+
+# Calling BFS function
+bfs(graph, start_node)</code></pre>
+    </section>
+
+    <section class="program">
+      <h2>EXERCISE 10: TREE TRAVERSAL</h2>
+      <pre><code># Creating tree node
+class Node:
+  def __init__(self, data):
+    self.data = data
+    self.left = None
+    self.right = None
+
+# Inorder Traversal
+def inorder(root):
+  if root:
+     inorder(root.left)
+     print(root.data, end=&quot; &quot;)
+     inorder(root.right)
+
+# Preorder Traversal
+def preorder(root):
+  if root:
+     print(root.data, end=&quot; &quot;)
+     preorder(root.left)
+     preorder(root.right)
+
+# Postorder Traversal
+def postorder(root):
+  if root:
+     postorder(root.left)
+     postorder(root.right)
+     print(root.data, end=&quot; &quot;)
+
+# Creating tree
+root = Node(&#x27;A&#x27;)
+root.left = Node(&#x27;B&#x27;)
+root.right = Node(&#x27;C&#x27;)
+root.left.left = Node(&#x27;D&#x27;)
+root.left.right = Node(&#x27;E&#x27;)
+
+# Displaying traversals
+print(&quot;\nInorder Traversal:&quot;)
+inorder(root)
+
+print(&quot;\n\nPreorder Traversal:&quot;)
+preorder(root)
+
+print(&quot;\n\nPostorder Traversal:&quot;)
+postorder(root)</code></pre>
+    </section>
+</main>
+</body>
+</html>
